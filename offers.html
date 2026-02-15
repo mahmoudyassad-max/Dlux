@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض DLUX الحصرية | فخامة بأسعار لا تقاوم</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* تنسيقات خاصة بصفحة العروض */
+        .offers-banner {
+            background: linear-gradient(45deg, #121212, #1a1a1a);
+            color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .timer-unit {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        .timer-unit span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        .timer-unit label { font-size: 0.8rem; color: #ccc; }
+        
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e63946;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">D<span>LUX</span></a>
+    <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="offers.html" style="color: #d4af37;">العروض الحالية</a>
+        <a href="index.html#contact">تواصل معنا</a>
+    </nav>
+    <div class="header-icons">
+        <a href="cart.html" class="cart-wrapper">
+            <div class="cart-icon-container">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+    </div>
+</header>
+
+<section class="offers-banner" style="
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('luxury-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 3px solid #d4af37;
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+">
+    <div style="position: absolute; top: -50%; left: -10%; width: 40%; height: 200%; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); transform: rotate(30deg);"></div>
+
+    <div class="banner-content" style="position: relative; z-index: 2;">
+        <span class="sub-title" style="color: #d4af37; letter-spacing: 5px; font-weight: bold; text-transform: uppercase;">Exclusive Collection</span>
+        <h1 style="font-size: 3.5rem; color: #fff; margin: 20px 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);">فخامة تستحقها، بأسعار لن تتكرر</h1>
+        <p style="font-size: 1.2rem; color: #eee; max-width: 600px; margin: 0 auto 30px;">استمتع بخصومات تصل إلى <span style="color: #d4af37; font-size: 1.5rem; font-weight: bold;">40%</span> على تشكيلتنا المختارة من الساعات والعطور العالمية.</p>
+        
+        <div class="countdown-timer" id="timer">
+            <div class="timer-unit"><span id="days">00</span><label>يوم</label></div>
+            <div class="timer-unit"><span id="hours">00</span><label>ساعة</label></div>
+            <div class="timer-unit"><span id="minutes">00</span><label>دقيقة</label></div>
+            <div class="timer-unit"><span id="seconds">00</span><label>ثانية</label></div>
+        </div>
+    </div>
+</section>
+
+<main class="main-shop-container" style="padding: 50px 8%;">
+    <div class="luxury-header">
+        <h2 class="main-title">القطع المشمولة في العرض</h2>
+        <div class="fancy-divider">
+            <span class="gold-line"></span>
+            <i class="fas fa-percentage"></i>
+            <span class="gold-line"></span>
+        </div>
+    </div>
+
+    <div class="product-grid" id="offers-grid">
+        </div>
+</main>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+<script src="offers-logic.js"></script>
+</body>
+</html>

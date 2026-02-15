@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>صندوق الوارد | DLUX Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-chat-layout { display: grid; grid-template-columns: 350px 1fr; gap: 20px; height: 80vh; padding: 20px; }
+        .msg-list-area { overflow-y: auto; background: #fff; border-radius: 15px; border: 1px solid #eee; }
+        .chat-view-area { background: #fff; border-radius: 15px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        #active-chat-box { flex: 1; padding: 20px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; min-height: 400px; }
+        .chat-input-area { padding: 20px; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .chat-input-area input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; }
+        .msg-item { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .msg-item.active { border-right: 4px solid #d4af37; background: #fdfaf0; }
+        .bubble { max-width: 70%; padding: 10px 15px; border-radius: 15px; }
+        .bubble.admin { align-self: flex-end; background: #1d3557; color: white; }
+        .bubble.customer { align-self: flex-start; background: #e9ecef; color: #333; }
+        .header { padding: 20px; background: #fff; display: flex; justify-content: space-between; align-items: center; }
+        .msg-item { position: relative; padding-left: 40px; } /* ترك مساحة للزر */
+.delete-btn {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e74c3c;
+    opacity: 0.3;
+    transition: 0.3s;
+    padding: 5px;
+}
+.msg-item:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { color: #c0392b; transform: translateY(-50%) scale(1.2); }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2><i class="fas fa-comments"></i> إدارة المحادثات</h2>
+    <a href="admin.html">العودة للوحة التحكم</a>
+</div>
+
+<div class="admin-chat-layout">
+    <div id="inbox-list-sidebar" class="msg-list-area"></div>
+
+    <div class="chat-view-area">
+        <div id="active-chat-box">
+            <p style="text-align:center; color:#999; margin-top:100px;">اختر زبوناً لبدء المحادثة</p>
+        </div>
+        
+    <div id="admin-reply-area" class="chat-input-area" style="display: none;">
+    <input type="text" id="admin-reply-input" placeholder="اكتب ردك...">
+    <button type="button" id="admin-send-btn">إرسال</button>
+</div>
+    </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-database-compat.js"></script>
+
+<script>
+  // بيانات الربط (تحصل عليها من Firebase Console)
+  const firebaseConfig = {
+    apiKey: "AIzaSy...",
+    authDomain: "your-app.firebaseapp.com",
+    databaseURL: "https://your-app-default-rtdb.firebaseio.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "...",
+    appId: "..."
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+</script>
+<script src="inbox-logic.js"></script>
+</body>
+</html>

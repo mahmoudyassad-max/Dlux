@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLUX | سلة المشتريات</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <a href="index.html" class="logo">D<span>LUX</span></a>
+    <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="#electronics-section">إلكترونيات</a>
+        <a href="#watches-section">ساعات</a>
+        <a href="#perfumes-section">عطور</a>
+    </nav>
+  <div class="header-icons">
+    <a href="cart.html" class="cart-wrapper">
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span>
+        </div>
+        <span class="cart-label">حقيبة التسوق</span>
+    </a>
+</div>
+</header>
+
+    <div class="cart-container" style="max-width: 1000px; margin: 30px auto; display: grid; grid-template-columns: 1fr 350px; gap: 20px; padding: 0 20px;">
+        <div class="cart-items" style="background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h2 style="margin-bottom: 20px; border-bottom: 2px solid #f1f1f1; padding-bottom: 10px;">سلتك الحالية</h2>
+            <div id="cart-render-area">
+                </div>
+        </div>
+
+        <div class="delivery-info" style="background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: fit-content;">
+            <h3 style="margin-bottom: 15px;">بيانات الشحن</h3>
+            <input type="text" id="cust-name" placeholder="الاسم الكامل" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+            <input type="tel" id="cust-phone" placeholder="رقم الهاتف" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+            
+            <label>الولاية:</label>
+            <select id="cust-wilaya" onchange="updateShippingUI()" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px;">
+                <option value="">اختر الولاية</option>
+                <option value="16">الجزائر العاصمة (400 دج)</option>
+                <option value="06">بجاية (600 دج)</option>
+                <option value="31">وهران (600 دج)</option>
+                <option value="others">باقي الولايات (700-900 دج)</option>
+            </select>
+
+            <label>نوع التوصيل:</label>
+            <select id="deliv-type" onchange="updateShippingUI()" style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px;">
+                <option value="office">توصيل للمكتب (Yalidine)</option>
+                <option value="home">توصيل للمنزل (+200 دج)</option>
+            </select>
+
+            <div class="summary" style="background: #f9f9f9; padding: 15px; border-radius: 10px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>مجموع المنتجات:</span>
+                    <span style="font-weight:bold;"><span id="subtotal">0</span> دج</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>سعر الشحن:</span>
+                    <span style="font-weight:bold; color: #e63946;"><span id="shipping-cost">0</span> دج</span>
+                </div>
+                <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+                <div style="display:flex; justify-content:space-between; font-size: 1.2rem; font-weight:bold;">
+                    <span>الإجمالي النهائي:</span>
+                    <span style="color: #1d3557;"><span id="final-total">0</span> دج</span>
+                </div>
+            </div>
+
+            <button onclick="confirmOrder()" style="width:100%; background:#1d3557; color:#fff; border:none; padding:15px; border-radius:10px; margin-top:20px; cursor:pointer; font-weight:bold; font-size:1rem;">
+                <i class="fab fa-whatsapp"></i> تأكيد الطلب عبر واتساب
+            </button>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="cart-logic.js"></script>
+</body>
+</html>
