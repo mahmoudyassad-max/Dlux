@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا | DLUX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+ <style>
+    .chat-wrapper { max-width: 600px; margin: 50px auto; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; height: 600px; }
+    .chat-header { background: #1d3557; color: white; padding: 20px; display: flex; align-items: center; gap: 15px; }
+    #chat-box { flex: 1; padding: 20px; overflow-y: auto; background: #f4f7f6; display: flex; flex-direction: column; gap: 10px; }
+    .message { max-width: 80%; padding: 12px 18px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; position: relative; }
+    .message.user { align-self: flex-end; background: #d4af37; color: #1a1a1a; border-bottom-left-radius: 2px; }
+    .message.bot { align-self: flex-start; background: #fff; border: 1px solid #ddd; border-bottom-right-radius: 2px; }
+    .chat-footer { padding: 20px; background: #fff; border-top: 1px solid #eee; display: flex; gap: 10px; }
+    .chat-footer input { flex: 1; border: 1px solid #ddd; padding: 12px; border-radius: 10px; outline: none; }
+    .send-btn { background: #1d3557; color: white; border: none; padding: 0 20px; border-radius: 10px; cursor: pointer; }
+    /* تمييز ردود المدير عن رد البوت */
+.message.bot {
+    background: #fff;
+    border-left: 4px solid #d4af37; /* لمسة ذهبية لردود المتجر */
+    font-weight: 500;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo-container">
+        <img src="logo.png" alt="DLUX Logo" class="main-logo" style="height: 85px;">
+    </a>
+    <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="offers.html">العروض</a>
+        <a href="contact.html" style="color: #d4af37;">تواصل معنا</a>
+    </nav>
+</header>
+
+<div class="chat-wrapper">
+    <div class="chat-header">
+        <img src="logo.png" style="height: 40px; border-radius: 50%;">
+        <div>
+            <strong style="display: block;">خدمة عملاء DLUX</strong>
+            <small><i class="fas fa-circle" style="color: #2ecc71; font-size: 0.7rem;"></i> متصل الآن</small>
+        </div>
+    </div>
+
+    <div id="chat-box">
+        <div class="message bot">مرحباً بك في متجر DLUX! كيف يمكننا مساعدتك اليوم؟</div>
+    </div>
+
+<div class="chat-footer">
+    <input type="text" id="user-input" placeholder="اكتب رسالتك هنا..." autocomplete="off">
+    <button type="button" id="send-btn" class="send-btn">
+        <i class="fas fa-paper-plane"></i>
+    </button>
+</div>
+</div>
+
+
+   <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-database-compat.js"></script>
+
+<script>
+  // بيانات الربط (تحصل عليها من Firebase Console)
+  const firebaseConfig = {
+    apiKey: "AIzaSy...",
+    authDomain: "your-app.firebaseapp.com",
+    databaseURL: "https://your-app-default-rtdb.firebaseio.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "...",
+    appId: "..."
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+</script>
+
+
+  <script src="contact-logic.js"></script>
+</body>
+</html>

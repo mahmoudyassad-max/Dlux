@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLUX | عالم الفخامة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+ <a href="index.html" class="logo">D<span>LUX</span></a>
+    <nav class="main-nav">
+    <a href="index.html">الرئيسية</a>
+    <a href="offers.html" class="offers-link" style="color: #e63946; font-weight: bold;">
+        <i class="fas fa-fire-alt"></i> العروض
+    </a>
+    <a href="#electronics-section">إلكترونيات</a>
+    <a href="#watches-section">ساعات</a>
+    <a href="#perfumes-section">عطور</a>
+    <a href="#clothes-section">ملابس</a>
+    <a href="#contact">اتصل بنا</a>
+</nav>
+  <div class="header-icons">
+    <a href="cart.html" class="cart-wrapper">
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span>
+        </div>
+        <span class="cart-label">حقيبة التسوق</span>
+    </a>
+</div>
+</header>
+
+<section class="hero-section">
+    <div class="hero-content">
+        <span class="badge-premium">إصدارات محدودة</span>
+        <h1>أناقتك.. لغتك التي لا تحتاج لترجمة</h1>
+        <p>اكتشف تشكيلتنا الحصرية من الساعات، العطور، والإلكترونيات الراقية</p>
+        
+        <div class="hero-btns" style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+            <a href="offers.html" class="view-btn" style="background: #e63946; border: none;">مشاهدة العروض 🔥</a>
+            <a href="#watches-section" class="view-btn" style="background: transparent; border: 1px solid #fff;">تصفح المجموعات</a>
+        </div>
+    </div>
+</section>
+
+<div class="main-shop-container" style="display: flex; gap: 30px; padding: 40px 5%; align-items: flex-start;">
+    
+    <aside class="shop-sidebar" style="width: 280px; background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: sticky; top: 100px;">
+        <div class="filter-group" style="margin-bottom: 30px;">
+            <h4 style="border-right: 3px solid #d4af37; padding-right: 10px; margin-bottom: 15px;">الأقسام</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li onclick="renderStore('')" style="cursor:pointer; padding: 10px; border-bottom: 1px solid #f5f5f5;">الكل</li>
+                <li onclick="renderStore('electronics')" style="cursor:pointer; padding: 10px; border-bottom: 1px solid #f5f5f5;">إلكترونيات</li>
+                <li onclick="renderStore('watches')" style="cursor:pointer; padding: 10px; border-bottom: 1px solid #f5f5f5;">ساعات</li>
+                <li onclick="renderStore('perfumes')" style="cursor:pointer; padding: 10px; border-bottom: 1px solid #f5f5f5;">عطور</li>
+                <li onclick="renderStore('clothes')" style="cursor:pointer; padding: 10px 0; border-bottom: 1px solid #f5f5f5;">أناقة النخبة</li> </ul>
+            </ul>
+        </div>
+
+        <div class="filter-group">
+            <h4 style="border-right: 3px solid #d4af37; padding-right: 10px; margin-bottom: 15px;">نطاق السعر</h4>
+            <input type="range" id="price-range" min="0" max="100000" step="500" value="100000" style="width: 100%; accent-color: #d4af37;">
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <span id="price-value" style="color: #d4af37; font-weight: bold;">100,000 دج</span>
+            </div>
+        </div>
+    </aside>
+
+    <main style="flex: 1;">
+
+    <div id="no-results" style="display: none; text-align: center; padding: 50px;">
+        <i class="fas fa-search-minus" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+        <h3>عذراً، لم نجد ما تبحث عنه!</h3>
+        <button onclick="resetSearch()" style="background: #1a1a1a; color: #fff; border: none; padding: 10px 25px; border-radius: 20px; margin-top: 15px; cursor: pointer;">عرض الكل</button>
+    </div>
+
+    <section class="products-section" id="electronics-section">
+        <div class="section-container">
+            <div class="luxury-header">
+                <span class="sub-title">Modern Technology</span>
+                <h2 class="main-title">إلكترونيات النخبة</h2>
+                <div class="fancy-divider">
+                    <span class="gold-line"></span>
+                    <i class="fas fa-microchip"></i>
+                    <span class="gold-line"></span>
+                </div>
+            </div>
+            <div class="product-grid" id="electronics-grid"></div>
+        </div>
+    </section>
+
+    <section class="products-section" id="watches-section">
+        <div class="section-container">
+            <div class="luxury-header">
+                <span class="sub-title">Timeless Elegance</span>
+                <h2 class="main-title">ساعات الصفوة</h2>
+                <div class="fancy-divider">
+                    <span class="gold-line"></span>
+                    <i class="fas fa-clock"></i>
+                    <span class="gold-line"></span>
+                </div>
+            </div>
+            <div class="product-grid" id="watches-grid"></div>
+        </div>
+    </section>
+
+
+    <section class="promo-banner" style="background: #121212; padding: 40px; margin: 50px 8%; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #d4af37;">
+    <div class="promo-text">
+        <h2 style="color: #fff; margin-bottom: 10px;">لا تفوت عروض نهاية الأسبوع!</h2>
+        <p style="color: #999;">خصومات حصرية تصل إلى 40% على ماركات مختارة</p>
+    </div>
+    <a href="offers.html" class="view-btn" style="padding: 15px 40px;">اذهب للعروض الآن</a>
+</section>
+
+
+    <section class="products-section" id="perfumes-section">
+        <div class="section-container">
+            <div class="luxury-header">
+                <span class="sub-title">Royal Scents</span>
+                <h2 class="main-title">العطور الملكية</h2>
+                <div class="fancy-divider">
+                    <span class="gold-line"></span>
+                    <i class="fas fa-magic"></i>
+                    <span class="gold-line"></span>
+                </div>
+            </div>
+            <div class="product-grid" id="perfumes-grid"></div>
+        </div>
+    </section>
+
+    <section class="products-section" id="clothes-section">
+        <div class="section-container">
+            <div class="luxury-header">
+                <span class="sub-title">Premium Fashion</span>
+                <h2 class="main-title">أناقة النخبة</h2>
+                <div class="fancy-divider">
+                    <span class="gold-line"></span>
+                    <i class="fas fa-tshirt"></i>
+                    <span class="gold-line"></span>
+                </div>
+            </div>
+            <div class="product-grid" id="clothes-grid"></div>
+        </div>
+    </section>
+
+
+</main>
+</div>
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <a href="#" class="logo footer-logo">D<span>LUX</span></a>
+            <p class="footer-desc">وجهتكم الأولى لعالم الفخامة. نقدم لكم تشكيلة مختارة بعناية من أرقى الساعات، العطور، والإلكترونيات التي تحاكي ذوقكم الرفيع.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>روابط سريعة</h3>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="#electronics-section">الإلكترونيات</a></li>
+                <li><a href="#watches-section">ساعات الصفوة</a></li>
+                <li><a href="#perfumes-section">العطور الملكية</a></li>
+                <li><a href="contact.html" class="quick-contact-link">تواصل معنا</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column" id="contact">
+            <h3>تواصل معنا</h3>
+            <ul class="contact-info">
+                <li><i class="fas fa-map-marker-alt"></i>سطيف، عين ولمان</li>
+                <li><i class="fas fa-phone-alt"></i> 0657900870</li>
+                <li><i class="fas fa-envelope"></i> contact@dlux-store.com</li>
+                <li><i class="fas fa-clock"></i> متوفرون 24/7 لخدمتكم</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="social-links">
+    <a href="https://www.facebook.com/mah.moud.780437/?locale=ar_AR" target="_blank" title="فيسبوك">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://wa.me/213657900870" target="_blank" title="واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.instagram.com/mahmoudhaess/" target="_blank" title="انستغرام">
+        <i class="fab fa-instagram"></i>
+    </a>
+</div>
+    <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة &copy; 2024 DLUX Store - صُنع بكل فخامة</p>
+    </div>
+</footer>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

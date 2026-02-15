@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLUX | تفاصيل المنتج</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --accent: #e63946; --dark: #1d3557; --soft: #f8f9fa; --gold: #f1c40f; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .product-page { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 30px; }
+        #main-frame { width: 100%; height: 500px; border-radius: 20px; object-fit: cover; background: var(--soft); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .thumbs { display: flex; gap: 10px; margin-top: 15px; }
+        .thumb { width: 80px; height: 80px; border-radius: 10px; cursor: pointer; object-fit: cover; border: 2px solid transparent; }
+        .thumb.active { border-color: var(--accent); }
+        
+        /* تقييمات بمستوى عالمي */
+        .rating-card { background: var(--soft); border-radius: 20px; padding: 30px; margin-top: 40px; display: flex; align-items: center; gap: 40px; }
+        .avg-box { text-align: center; border-left: 2px solid #ddd; padding-left: 40px; }
+        .stars-input { display: flex; gap: 5px; cursor: pointer; font-size: 1.5rem; color: #ccc; margin: 15px 0; }
+        .stars-input i.active { color: var(--gold); }
+        /* تنسيق قسم المنتجات المشابهة */
+.related-section {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.related-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* لضمان تساوي الطول */
+}
+
+.related-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.related-card .img-wrapper {
+    width: 100%;
+    height: 220px; /* توحيد طول الصورة */
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.related-card .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لملء المساحة دون تشويه */
+    transition: 0.5s;
+}
+
+.related-card:hover .img-wrapper img {
+    transform: scale(1.1);
+}
+
+.related-card .info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.related-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* تجعل كل البطاقات بنفس الطول في الصف الواحد */
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.related-card .img-wrapper {
+    width: 100%;
+    height: 200px; /* توحيد طول منطقة الصورة */
+    overflow: hidden;
+}
+
+.related-card .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يمنع تمدد الصورة ويقصها بشكل جميل */
+}
+
+.related-card .price {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+   
+        
+        @media (max-width: 900px) { .product-page { grid-template-columns: 1fr; } .rating-card { flex-direction: column; text-align: center; } .avg-box { border: none; padding: 0; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">D<span>LUX</span></a>
+    <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="#electronics-section">إلكترونيات</a>
+        <a href="#watches-section">ساعات</a>
+        <a href="#perfumes-section">عطور</a>
+    </nav>
+  <div class="header-icons">
+    <a href="cart.html" class="cart-wrapper">
+        <div class="cart-icon-container">
+            <i class="fas fa-shopping-bag"></i> <span id="cart-count">0</span>
+        </div>
+        <span class="cart-label">حقيبة التسوق</span>
+    </a>
+</div>
+</header>
+
+<div class="container">
+    <div class="product-page">
+        <div class="gallery-container">
+            <img id="main-frame" src="loading.jpg" alt="Product Image">
+            <div class="thumbs" id="thumbs-list"></div>
+        </div>
+
+        <div class="info-section">
+            <h1 id="p-title">جاري التحميل...</h1>
+            <div class="rating-summary">
+                <span id="star-icons" style="color: var(--gold);"></span>
+                <span id="avg-num" style="font-weight: bold;">0.0</span>
+                <span id="review-count">(0 تقييم)</span>
+            </div>
+            <h2 class="price-tag" id="p-price">0 دج</h2>
+            <ul id="p-features" style="padding-right: 20px; margin: 20px 0;"></ul>
+
+            <div class="buy-box" style="display:flex; gap:15px; background:var(--soft); padding:20px; border-radius:15px;">
+                <div class="qty-input" style="display:flex; align-items:center; background:#fff; padding:5px 15px; border-radius:10px;">
+                    <button onclick="updateQty(-1)" style="border:none; background:none; cursor:pointer; font-size:1.2rem;">-</button>
+                    <input type="number" id="qty-val" value="1" readonly style="width:40px; text-align:center; border:none; font-weight:bold;">
+                    <button onclick="updateQty(1)" style="border:none; background:none; cursor:pointer; font-size:1.2rem;">+</button>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCartGlobal()" style="flex:1; background:var(--dark); color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold;">إضافة إلى السلة</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="rating-card">
+        <div class="avg-box">
+            <h2 id="rating-big-num" style="font-size: 3.5rem; margin:0;">0.0</h2>
+            <div id="big-stars" style="color: var(--gold); font-size: 1.2rem;"></div>
+            <p id="total-reviews-label">0 تقييم</p>
+        </div>
+        <div class="write-review">
+            <h3>قيم هذا المنتج</h3>
+            <div class="stars-input" id="stars-selector">
+                <i class="fas fa-star" data-value="1"></i>
+                <i class="fas fa-star" data-value="2"></i>
+                <i class="fas fa-star" data-value="3"></i>
+                <i class="fas fa-star" data-value="4"></i>
+                <i class="fas fa-star" data-value="5"></i>
+            </div>
+            <button onclick="submitGlobalRating()" style="background:var(--dark); color:white; border:none; padding:10px 25px; border-radius:8px; cursor:pointer;">إرسال التقييم</button>
+        </div>
+    </div>
+    <div class="related-section">
+        <h2 style="border-right: 4px solid var(--accent); padding-right: 15px;">منتجات مشابهة</h2>
+        <div class="related-grid" id="related-prods-grid"></div>
+    </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+<script src="product-logic.js"></script>
+</body>
+</html>
